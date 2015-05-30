@@ -30,7 +30,7 @@ samba4_flags=${samba4_flags=--daemon}
 samba4_config_default="%%SAMBA4_CONFDIR%%/%%SAMBA4_CONFIG%%"
 samba4_config=${samba4_config=${samba4_config_default}}
 samba4_configfile_arg=${samba4_config:+--configfile="${samba4_config}"}			#"
-testparm_command="/usr/bin/samba-tool testparm --suppress-prompt --verbose ${samba4_configfile_arg}"
+testparm_command="/usr/bin/testparm --suppress-prompt --verbose ${samba4_configfile_arg}"
 # Fetch parameters from configuration file
 samba4_role=$(${testparm_command} --parameter-name='server role' 2>/dev/null)
 samba4_lockdir=$(${testparm_command} --parameter-name='lock directory' 2>/dev/null)
