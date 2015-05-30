@@ -48,7 +48,6 @@ source=(http://us1.samba.org/samba/ftp/stable/${pkgbase}-${_realver}.tar.gz
         swat.xinetd
         samba.pam
         samba-init.d
-        samba-conf.d
         samba.in
 	${port_patches[@]})
 ### UNINSTALL dmapi package before building!!!
@@ -216,8 +215,7 @@ depends=('db>=4.7' 'popt' 'libcups' 'gamin' 'gnutls>=2.4.1'
 backup=(etc/logrotate.d/samba
         etc/pam.d/samba
         etc/samba/smb.conf
-        etc/xinetd.d/swat
-        etc/conf.d/samba)
+        etc/xinetd.d/swat)
     # Use samba-pkg as a staging directory for the split packages
     # (This is so RPATHS and symlinks are generated correctly via
     # make install, but the otherwise unsplit pieces can be split)
@@ -244,11 +242,10 @@ sys.path.insert(0, '/usr/lib/python${_pyver}/site-packages')" \
     done
 
   # install systemd files
-  install -d -m755 ${pkgdir}/etc/{init.d,rc.d,conf.d}
+  install -d -m755 ${pkgdir}/etc/{init.d,rc.d}
 
   install -m755 ${srcdir}/samba.in ${pkgdir}/etc/rc.d/samba
   install -m644 ${srcdir}/samba-init.d ${pkgdir}/etc/init.d/samba
-  install -m644 ${srcdir}/samba-conf.d ${pkgdir}/etc/conf.d/samba
   #done
 
   # install sample smb.conf
